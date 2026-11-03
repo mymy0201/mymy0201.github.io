@@ -23,8 +23,42 @@
     projects.forEach(project => {
       const banner = el('a', 'project-banner banner-' + project.id);
       banner.href = project.page;
+
+      // Banner mode artwork
       const image = safeImage(project.banner);
-      if (image) { const img = el('img', 'banner-image'); img.src = image; img.alt = project.bannerAlt || project.title; img.loading = project.id === projects[0].id ? 'eager' : 'lazy'; img.decoding = 'async'; banner.append(img); }
+      if (image) {
+        const img = el('img', 'banner-image');
+        img.src = image;
+        img.alt = project.bannerAlt || project.title;
+        img.loading = project.id === projects[0].id ? 'eager' : 'lazy';
+        img.decoding = 'async';
+        banner.append(img);
+      }
+
+      // SteamGridDB Grid vertical poster (for Grid Logo view)
+      const gridImage = safeImage(project.gridImage);
+      if (gridImage) {
+        const gridImg = el('img', 'grid-poster-image');
+        gridImg.src = gridImage;
+        gridImg.alt = project.title + ' Poster';
+        gridImg.loading = 'lazy';
+        gridImg.decoding = 'async';
+        banner.append(gridImg);
+      }
+
+      // SteamGridDB Logo overlay (for Grid Logo view)
+      const logoImage = safeImage(project.logoImage);
+      if (logoImage) {
+        const logoWrap = el('div', 'grid-logo-wrapper');
+        const logoImg = el('img', 'grid-logo-image');
+        logoImg.src = logoImage;
+        logoImg.alt = project.title + ' Logo';
+        logoImg.loading = 'lazy';
+        logoImg.decoding = 'async';
+        logoWrap.append(logoImg);
+        banner.append(logoWrap);
+      }
+
       const content = el('div', 'banner-content');
       content.append(el('span', 'banner-category', project.category), el('h2', '', project.title), el('span', 'banner-japanese', project.japanese));
       if (project.age) content.append(el('span', 'banner-age', project.age));
@@ -33,6 +67,7 @@
     });
 
     /* ── Interactive features for homepage ── */
+    initViewSwitcher();
     initScrollAnimations();
     initScrollProgress();
     initNavScroll();
@@ -449,5 +484,48 @@
         }
       });
     }
+  }
+
+  /**
+   * Feature 9 — View switcher (Banner vs SteamGridDB Grid Logo view)
+   */
+  function initViewSwitcher() {
+    if (typeof document.querySelector !== 'function') return;
+    const btnBanner = document.querySelector('#btn-view-banner');
+    const btnGrid = document.querySelector('#btn-view-grid');
+    const gallery = document.querySelector('#banners');
+    if (!gallery || !btnBanner || !btnGrid) return;
+
+    const setMode = mode => {
+      const isGrid = mode === 'grid';
+      if (gallery.classList) gallery.classList.toggle('view-mode-grid', isGrid);
+      if (btnBanner.classList) {
+        btnBanner.classList.toggle('active', !isGrid);
+        btnBanner.setAttribute('aria-pressed', (!isGrid).toString());
+      }
+      if (btnGrid.classList) {
+        btnGrid.classList.toggle('active', isGrid);
+        btnGrid.setAttribute('aria-pressed', isGrid.toString());
+      }
+      try {
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('hako_view_mode', mode);
+        }
+      } catch {}
+    };
+
+    if (typeof btnBanner.addEventListener === 'function') {
+      btnBanner.addEventListener('click', () => setMode('banner'));
+    }
+    if (typeof btnGrid.addEventListener === 'function') {
+      btnGrid.addEventListener('click', () => setMode('grid'));
+    }
+
+    try {
+      if (typeof localStorage !== 'undefined') {
+        const saved = localStorage.getItem('hako_view_mode');
+        if (saved === 'grid') setMode('grid');
+      }
+    } catch {}
   }
 })();
