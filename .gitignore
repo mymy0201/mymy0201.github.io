@@ -1,0 +1,17 @@
+# Build output (already have source files)
+dist/
+
+# Template reference
+template-original/
+
+# Non-website files accidentally in img/
+img/*.exe
+img/*.msi
+img/*.wav
+
+# Node
+node_modules/
+
+# OS
+Thumbs.db
+.DS_Store

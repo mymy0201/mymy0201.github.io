@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#333333">
+<meta name="description" content="Vestaria Saga I+ — Giới thiệu, thông tin dự án, bản vá và hướng dẫn tải xuống tại Hako.">
+<title>Vestaria Saga I+ — Hako</title>
+<link rel="stylesheet" href="style.css">
+<script src="projects.js" defer></script>
+<script src="app.js" defer></script>
+</head>
+<body data-project="vestaria">
+<a class="skip" href="#projects">Đến nội dung chính</a>
+<nav class="header-nav" aria-label="Điều hướng chính"><div class="container nav-inner">
+<a class="nav-brand" href="index.html"><span class="brand-mark">H</span> HAKO</a>
+<div class="nav-links"><a href="index.html">Trang chủ</a><a href="#projects">Giới thiệu</a><a href="#screenshots">Hình ảnh</a><a class="nav-down-link" href="#downloads">Tải xuống</a><a href="#guide">Hướng dẫn</a></div>
+</div></nav>
+<header id="home" class="hero">
+<div class="container hero-layout"><div class="header-content"><a class="breadcrumb" href="index.html">← Tất cả dự án</a><p class="hero-kicker">HAKO · DỰ ÁN GAME TIẾNG VIỆT</p><h1>Vestaria Saga I+</h1><div class="hero-actions"><a class="hero-download" href="#downloads">Tải xuống ↓</a><a class="hero-info" href="#projects">Giới thiệu dự án</a></div></div><figure class="hero-artwork"><img src="img/vestaria-banner.jpg" alt="Ảnh chụp gameplay Vestaria Saga I+" width="1200" height="675" fetchpriority="high"></figure></div>
+</header>
+<main>
+<section id="projects" class="article container"><h2 class="article-title">Giới thiệu</h2><div id="project-list"></div><noscript>Hãy bật JavaScript để xem thông tin và liên kết tải xuống của dự án.</noscript></section>
+<section id="screenshots" class="article screenshots-section"><div class="container"><h2 class="article-title">Hình ảnh trong game</h2><p class="gallery-hint">Chọn ảnh để xem kích thước lớn.</p><div id="screenshot-list" class="screenshot-grid"></div></div></section>
+<section id="downloads" class="downloads article"><div class="container"><h2 class="article-title">Tải xuống</h2><p>Bản vá và hướng dẫn cài đặt.</p><div id="download-list"></div><p class="download-note">Liên kết sẽ hiển thị khi được cập nhật. Hãy kiểm tra đúng phiên bản game trước khi cài đặt.</p></div></section>
+<section id="guide" class="article container"><h2 class="article-title">Hướng dẫn và lưu ý</h2><div id="project-guide-content"></div><div class="questions"><details open><summary>Tải xuống như thế nào?</summary><p>Chọn liên kết trong mục Tải xuống của từng dự án. Nếu hiển thị “Chưa có liên kết”, đường dẫn chưa được cập nhật.</p></details><details><summary>Cần chuẩn bị gì trước khi cài đặt?</summary><p>Đọc hướng dẫn đi kèm bản phát hành, kiểm tra đúng phiên bản game yêu cầu và sao lưu dữ liệu lưu trước khi áp dụng bản vá.</p></details><details><summary>Lưu ý về nội dung</summary><p>Xem phần lưu ý và thông tin độ tuổi của dự án trước khi lựa chọn trải nghiệm.</p></details></div></section>
+</main>
+<footer><div class="container footer-inner"><small>Hako · Dự án game Tiếng Việt</small><a href="#home">Về đầu trang ↑</a></div><p class="container artwork-credit">Hình ảnh gốc: <a href="https://automaton-media.com/articles/newsjp/20240425-291095/" target="_blank" rel="noopener noreferrer">AUTOMATON · Vestaria Saga I+ ↗</a></p><p class="container legal">Tên trò chơi và nội dung gốc thuộc về chủ sở hữu tương ứng.</p></footer>
+<dialog id="image-viewer" class="image-viewer" aria-label="Ảnh chụp trong game"><div class="viewer-toolbar"><p id="viewer-caption" aria-live="polite"></p><button type="button" id="viewer-close" autofocus aria-label="Đóng ảnh">Đóng ×</button></div><img id="viewer-image" alt=""><div class="viewer-controls"><button type="button" id="viewer-prev" aria-label="Ảnh trước">← Trước</button><span id="viewer-count" aria-live="polite"></span><button type="button" id="viewer-next" aria-label="Ảnh tiếp theo">Tiếp →</button></div></dialog>
+</body>
+</html>

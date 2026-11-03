@@ -1,0 +1,90 @@
+@media (max-width: 767px) 
+{
+    .header-nav
+    {
+        height: 55px;
+        overflow: hidden;
+    }
+    ul.header-nav-content
+    {
+        clear: both;
+    }
+    
+    ul.header-nav-content li
+    {
+        padding: 10px;   
+        display: block;
+    }
+    
+    ul.header-nav-content li:last-child
+    {
+        margin-bottom: 10px;
+    }
+    
+    .header-nav-button
+    {
+        background: url("img/menu.png") no-repeat center center;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        float: right;
+    }
+    nav.active
+    {
+        height: auto;
+        overflow: auto;
+    }
+    .header-img-ava
+    {
+        display: none
+    }
+    .header-content
+    {
+        height: 100%;
+    }
+    
+    header
+    {
+        margin-top: 50px;
+    }
+    
+    header, .header-img-background
+    {
+        height: auto;
+    }
+    .header-tittle-game
+    {
+        margin: 50px 0;
+    }
+    .header-nav-logo
+    {
+        display: inline;
+        height: 40px;
+        width: 40px;
+        overflow: hidden;
+        float: left;
+        margin-top: 5px;
+    }
+    .header-nav-logo img
+    {
+        width: 100%;
+    }
+    .footer-link
+    {
+        float: left;
+        clear: both;
+    }
+	iframe.pv-clip
+	{
+		margin-bottom: 20px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) 
+{
+    .header-img-ava
+    {
+        height: 130px;
+        width: 130px;
+    }
+}
