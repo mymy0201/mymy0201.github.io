@@ -12,6 +12,12 @@
   };
   // Optional local banner images; no remote dependencies required.
   const safeImage = value => typeof value === 'string' && /^img\/[a-zA-Z0-9_./-]+$/.test(value) && !value.includes('..') ? value : null;
+
+  /* ── Motion preference check (safe for non-browser/VM environments) ── */
+  const prefersMotion = (typeof window !== 'undefined' && typeof window.matchMedia === 'function')
+    ? window.matchMedia('(prefers-reduced-motion: no-preference)')
+    : { matches: true, addEventListener: () => {} };
+
   const gallery = document.querySelector('#banners');
   if (gallery) {
     projects.forEach(project => {
@@ -25,9 +31,20 @@
       banner.append(content, el('span', 'banner-open', 'Xem dự án →'));
       gallery.append(banner);
     });
+
+    /* ── Interactive features for homepage ── */
+    initScrollAnimations();
+    initScrollProgress();
+    initNavScroll();
+    initCursorGlow();
+
     return;
   }
-  const currentProject = document.body.dataset.project;
+
+  /* ════════════════════════════════════════════════════════════
+     Detail page logic — project info, screenshots, downloads
+     ════════════════════════════════════════════════════════════ */
+  const currentProject = document.body && document.body.dataset ? document.body.dataset.project : null;
   const selected = projects.filter(project => project.id === currentProject);
   selected.forEach(project => {
     const article = el('article', 'project'); article.id = project.id;
@@ -47,20 +64,35 @@
       sidebar.append(el('h4', 'article-morelink', 'Các đường dẫn liên quan'));
       const link = el('a', 'source-link', `${project.sourceLabel} ↗`); link.href = source; link.target = '_blank'; link.rel = 'noopener noreferrer'; sidebar.append(link);
     }
-    layout.append(body, sidebar); article.append(layout); document.querySelector('#project-list').append(article);
+    layout.append(body, sidebar); article.append(layout);
+    const pList = document.querySelector('#project-list');
+    if (pList) pList.append(article);
+
     const screenshotList = document.querySelector('#screenshot-list');
     const screenshots = (project.screenshots || []).filter(shot => safeImage(shot.src));
     const viewer = document.querySelector('#image-viewer');
     let activeIndex = 0;
+
+    /* ── Feature 7: Image viewer with smooth fluid transition ── */
     const showImage = index => {
       activeIndex = (index + screenshots.length) % screenshots.length;
       const shot = screenshots[activeIndex];
       const image = document.querySelector('#viewer-image');
-      image.src = shot.src;
-      image.alt = project.title + ' — ' + shot.caption;
-      document.querySelector('#viewer-caption').textContent = shot.caption;
-      document.querySelector('#viewer-count').textContent = (activeIndex + 1) + ' / ' + screenshots.length;
+      if (image) {
+        image.src = shot.src;
+        image.alt = project.title + ' — ' + shot.caption;
+        if (image.classList && prefersMotion.matches) {
+          image.classList.remove('viewer-fade-in');
+          void image.offsetWidth; // trigger reflow for smooth animation replay
+          image.classList.add('viewer-fade-in');
+        }
+      }
+      const caption = document.querySelector('#viewer-caption');
+      if (caption) caption.textContent = shot.caption;
+      const count = document.querySelector('#viewer-count');
+      if (count) count.textContent = (activeIndex + 1) + ' / ' + screenshots.length;
     };
+
     if (screenshotList) {
       if (!screenshots.length) screenshotList.append(el('p', 'gallery-empty', 'Ảnh chụp trong game sẽ được cập nhật.'));
       screenshots.forEach((shot, index) => {
@@ -78,13 +110,21 @@
       });
     }
     if (viewer) {
-      document.querySelector('#viewer-close').addEventListener('click', () => viewer.close());
-      document.querySelector('#viewer-prev').addEventListener('click', () => showImage(activeIndex - 1));
-      document.querySelector('#viewer-next').addEventListener('click', () => showImage(activeIndex + 1));
+      const vClose = document.querySelector('#viewer-close');
+      if (vClose) vClose.addEventListener('click', () => viewer.close());
+      const vPrev = document.querySelector('#viewer-prev');
+      if (vPrev) vPrev.addEventListener('click', () => showImage(activeIndex - 1));
+      const vNext = document.querySelector('#viewer-next');
+      if (vNext) vNext.addEventListener('click', () => showImage(activeIndex + 1));
       viewer.addEventListener('keydown', event => {
         if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); showImage(activeIndex + (event.key === 'ArrowLeft' ? -1 : 1)); }
       });
-      viewer.addEventListener('click', event => { if (event.target === viewer) { const bounds = viewer.getBoundingClientRect(); if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) viewer.close(); } });
+      viewer.addEventListener('click', event => {
+        if (event.target === viewer && typeof viewer.getBoundingClientRect === 'function') {
+          const bounds = viewer.getBoundingClientRect();
+          if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) viewer.close();
+        }
+      });
     }
     const card = el('article', 'download-card'); card.id = `download-${project.id}`;
     card.append(el('p', 'download-project-name', project.title));
@@ -125,6 +165,289 @@
         table.append(caption, head, body); wrapper.append(table); guide.append(wrapper);
       }
     }
-    card.append(links, notes); document.querySelector('#download-list').append(card);
+    card.append(links, notes);
+    const dList = document.querySelector('#download-list');
+    if (dList) dList.append(card);
   });
+
+  /* ── Detail-page interactive features ── */
+  initScrollAnimations();
+  initScrollProgress();
+  initNavScroll();
+  initHeroParallax();
+  initTypingEffect();
+  initFaqSmoothToggle();
+
+  /* ══════════════════════════════════════════════════════════════
+     MODERN INTERACTION FUNCTIONS
+     ══════════════════════════════════════════════════════════════ */
+
+  /**
+   * Feature 1 — Scroll-triggered reveal animations via IntersectionObserver.
+   */
+  function initScrollAnimations() {
+    if (typeof document.querySelectorAll !== 'function') return;
+    const selectors = [
+      '.project-banner',
+      '.article',
+      '.screenshot-card',
+      '.download-card',
+      '.data-content',
+      '.installation-step',
+      '.changelog-entry',
+      '.questions details'
+    ];
+
+    const targets = document.querySelectorAll(selectors.join(', '));
+    if (!targets || !targets.length) return;
+
+    targets.forEach(node => {
+      if (typeof node.setAttribute === 'function') node.setAttribute('data-animate', '');
+    });
+
+    const banners = document.querySelectorAll('.project-banner');
+    if (banners && banners.forEach) {
+      banners.forEach((banner, i) => {
+        if (banner.classList) banner.classList.add(`stagger-${i + 1}`);
+      });
+    }
+
+    if (typeof IntersectionObserver !== 'function') {
+      targets.forEach(node => {
+        if (node.classList) node.classList.add('is-visible');
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (entry.target.classList) entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    targets.forEach(node => observer.observe(node));
+  }
+
+  /**
+   * Feature 2 — Scroll progress bar.
+   */
+  function initScrollProgress() {
+    if (!document.body || typeof document.body.prepend !== 'function') return;
+    const bar = el('div', 'scroll-progress');
+    document.body.prepend(bar);
+
+    let ticking = false;
+    const update = () => {
+      const scrollTop = typeof window !== 'undefined' ? (window.scrollY || 0) : 0;
+      const docHeight = (document.documentElement ? document.documentElement.scrollHeight : 0) - (typeof window !== 'undefined' ? (window.innerHeight || 0) : 0);
+      const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+      if (document.documentElement && document.documentElement.style) {
+        document.documentElement.style.setProperty('--scroll', progress);
+      }
+      if (bar.style) {
+        bar.style.width = `${(progress * 100).toFixed(2)}%`;
+      }
+      ticking = false;
+    };
+
+    if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          if (typeof requestAnimationFrame === 'function') {
+            requestAnimationFrame(update);
+          } else {
+            update();
+          }
+          ticking = true;
+        }
+      }, { passive: true });
+    }
+
+    update();
+  }
+
+  /**
+   * Feature 3 — Smooth parallax on hero artwork.
+   */
+  function initHeroParallax() {
+    if (!prefersMotion || !prefersMotion.matches) return;
+    if (typeof window === 'undefined' || typeof window.addEventListener !== 'function') return;
+
+    const heroImg = document.querySelector('.hero-artwork img');
+    if (!heroImg || !heroImg.style) return;
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        if (typeof requestAnimationFrame === 'function') {
+          requestAnimationFrame(() => {
+            const offset = (window.scrollY || 0) * 0.12;
+            heroImg.style.transform = `translateY(${offset}px)`;
+            ticking = false;
+          });
+        } else {
+          heroImg.style.transform = `translateY(${((window.scrollY || 0) * 0.12)}px)`;
+          ticking = false;
+        }
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    if (typeof prefersMotion.addEventListener === 'function') {
+      prefersMotion.addEventListener('change', e => {
+        if (!e.matches) {
+          window.removeEventListener('scroll', onScroll);
+          heroImg.style.transform = '';
+        }
+      });
+    }
+  }
+
+  /**
+   * Feature 4 — Nav background transition on scroll.
+   */
+  function initNavScroll() {
+    if (typeof window === 'undefined' || typeof window.addEventListener !== 'function') return;
+    const nav = document.querySelector('.header-nav');
+    if (!nav || !nav.classList) return;
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        if (typeof requestAnimationFrame === 'function') {
+          requestAnimationFrame(() => {
+            nav.classList.toggle('nav-scrolled', (window.scrollY || 0) > 80);
+            ticking = false;
+          });
+        } else {
+          nav.classList.toggle('nav-scrolled', (window.scrollY || 0) > 80);
+          ticking = false;
+        }
+        ticking = true;
+      }
+    }, { passive: true });
+
+    nav.classList.toggle('nav-scrolled', (window.scrollY || 0) > 80);
+  }
+
+  /**
+   * Feature 5 — Smooth reveal for FAQ <details> elements.
+   */
+  function initFaqSmoothToggle() {
+    if (typeof document.querySelectorAll !== 'function') return;
+    const allDetails = document.querySelectorAll('.questions details');
+    if (!allDetails || !allDetails.length) return;
+
+    allDetails.forEach(details => {
+      if (typeof details.querySelector !== 'function') return;
+      const summary = details.querySelector('summary');
+      if (!summary) return;
+
+      const wrapper = el('div', 'faq-content-wrapper');
+      const inner = el('div', 'faq-content-inner');
+
+      while (summary.nextSibling) {
+        inner.append(summary.nextSibling);
+      }
+      wrapper.append(inner);
+      details.append(wrapper);
+
+      if (typeof summary.addEventListener === 'function') {
+        summary.addEventListener('click', e => {
+          if (typeof e.preventDefault === 'function') e.preventDefault();
+
+          if (details.open) {
+            if (details.classList) details.classList.add('faq-closing');
+            const onEnd = () => {
+              if (typeof wrapper.removeEventListener === 'function') wrapper.removeEventListener('transitionend', onEnd);
+              details.open = false;
+              if (details.classList) details.classList.remove('faq-closing');
+            };
+            if (typeof wrapper.addEventListener === 'function') {
+              wrapper.addEventListener('transitionend', onEnd);
+              setTimeout(onEnd, 380); // reliable fallback
+            } else {
+              onEnd();
+            }
+          } else {
+            details.open = true;
+          }
+        });
+      }
+    });
+  }
+
+  /**
+   * Feature 6 — Cursor glow effect on homepage banners.
+   */
+  function initCursorGlow() {
+    if (typeof document.querySelectorAll !== 'function') return;
+    const banners = document.querySelectorAll('.project-banner');
+    if (!banners || !banners.forEach) return;
+
+    banners.forEach(banner => {
+      if (typeof banner.addEventListener !== 'function') return;
+      banner.addEventListener('mousemove', e => {
+        if (typeof banner.getBoundingClientRect !== 'function' || !banner.style) return;
+        const rect = banner.getBoundingClientRect();
+        banner.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        banner.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      });
+
+      banner.addEventListener('mouseleave', () => {
+        if (!banner.style) return;
+        banner.style.removeProperty('--mouse-x');
+        banner.style.removeProperty('--mouse-y');
+      });
+    });
+  }
+
+  /**
+   * Feature 8 — Typing effect on the hero <h1> (detail pages only).
+   */
+  function initTypingEffect() {
+    if (!prefersMotion || !prefersMotion.matches) return;
+    if (typeof document.querySelector !== 'function') return;
+
+    const hero = document.querySelector('.hero h1, .hero-content h1');
+    if (!hero || !hero.classList || !hero.textContent) return;
+
+    const fullText = hero.textContent;
+    hero.textContent = '';
+    hero.classList.add('typing-active');
+
+    let i = 0;
+    const speed = 40; // ms per character
+
+    const type = () => {
+      if (i < fullText.length) {
+        hero.textContent += fullText.charAt(i);
+        i++;
+        setTimeout(type, speed);
+      } else {
+        hero.classList.remove('typing-active');
+        hero.classList.add('typing-done');
+      }
+    };
+
+    setTimeout(type, 280);
+
+    if (typeof prefersMotion.addEventListener === 'function') {
+      prefersMotion.addEventListener('change', e => {
+        if (!e.matches) {
+          hero.textContent = fullText;
+          hero.classList.remove('typing-active');
+          hero.classList.add('typing-done');
+        }
+      });
+    }
+  }
 })();
