@@ -1319,14 +1319,19 @@ footer a:hover {
 }
 
 /* Card Content in Grid Mode */
-#banners.view-mode-grid .banner-content {
+#banners.view-mode-grid .banner-content,
+#banners.view-mode-grid .project-banner:hover .banner-content {
   grid-column: auto;
   grid-row: auto;
   align-self: auto;
-  position: static;
+  position: static !important;
+  transform: none !important;
+  filter: none !important;
+  will-change: auto !important;
+  contain: none !important;
   width: 100%;
   text-align: center;
-  transition: transform 0.4s var(--ease);
+  transition: none !important;
 }
 
 #banners.view-mode-grid .project-banner h2 {
@@ -1348,7 +1353,8 @@ footer a:hover {
 }
 
 /* Badges floating at top corners of the grid card */
-#banners.view-mode-grid .banner-category {
+#banners.view-mode-grid .banner-category,
+#banners.view-mode-grid .project-banner:hover .banner-category {
   position: absolute;
   top: 16px;
   left: 16px;
@@ -1361,21 +1367,24 @@ footer a:hover {
   letter-spacing: 1.5px;
   padding: 4px 9px;
   border-radius: 4px;
-  margin-bottom: 0;
+  margin: 0;
+  transform: none !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-#banners.view-mode-grid .banner-age {
+#banners.view-mode-grid .banner-age,
+#banners.view-mode-grid .project-banner:hover .banner-age {
   position: absolute;
   top: 16px;
   right: 16px;
   z-index: 4;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  margin-left: 0;
+  margin: 0;
   font-size: 10px;
   padding: 3px 8px;
   border-radius: 4px;
+  transform: none !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
