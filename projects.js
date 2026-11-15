@@ -237,12 +237,12 @@ window.HAKO_PROJECTS = [
     "sourceUrl": "https://www.dlsite.com/maniax/work/=/product_id/RJ235129.html",
     "downloads": [
       {
-        "label": "Tải bản vá",
-        "url": ""
+        "label": "Tải bản vá (GitHub)",
+        "url": "https://github.com/mymy0201/Renalith-Saga-Vietnamese"
       },
       {
         "label": "Hướng dẫn cài đặt",
-        "url": ""
+        "url": "https://github.com/mymy0201/Renalith-Saga-Vietnamese#h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C3%A0i-%C4%91%E1%BA%B7t"
       }
     ]
   }
