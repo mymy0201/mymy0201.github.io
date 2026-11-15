@@ -459,53 +459,6 @@ body[data-project="renalith"] .hero-artwork::before {
   background: radial-gradient(circle, rgba(168, 85, 247, 0.55) 0%, rgba(99, 102, 241, 0.25) 50%, transparent 70%);
 }
 
-/* Silver-gray theme for Renalith Saga downloads section (enhanced readability) */
-body[data-project="renalith"] .downloads {
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 45%, #cbd5e1 100%);
-  box-shadow: inset 0 4px 16px rgba(0, 0, 0, 0.05), inset 0 -4px 16px rgba(0, 0, 0, 0.05);
-}
-
-body[data-project="renalith"] .downloads::before {
-  background-image:
-    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.02) 0, rgba(0, 0, 0, 0.02) 1px, transparent 0, transparent 10px),
-    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.7) 0%, transparent 40%);
-}
-
-body[data-project="renalith"] .downloads .article-title {
-  color: #0f172a;
-}
-
-body[data-project="renalith"] .downloads .article-title::before {
-  background: #334155;
-}
-
-body[data-project="renalith"] .downloads > .container > p {
-  color: #334155;
-  font-weight: 500;
-}
-
-body[data-project="renalith"] .download-project-name {
-  color: #0f172a;
-}
-
-body[data-project="renalith"] .download-button {
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid #334155;
-  border-bottom: 3px solid #020617;
-  color: #ffffff;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.25);
-}
-
-body[data-project="renalith"] .download-button:hover {
-  background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
-  border-color: #cbd5e1;
-  color: #93c5fd;
-  box-shadow: 0 6px 22px rgba(15, 23, 42, 0.4);
-}
-
-body[data-project="renalith"] .download-note {
-  color: #475569;
-}
 
 
 .hero-artwork img {
@@ -672,14 +625,14 @@ body[data-project="renalith"] .download-note {
 
 
 /* ------------------------------------------------------------------
-   10. DOWNLOADS SECTION (The Iconic Vibrant Hako Yellow Section)
+   10. DOWNLOADS SECTION (Silver-Gray Modern Theme with High Readability)
    ------------------------------------------------------------------ */
 .downloads {
-  background: linear-gradient(135deg, #fae22a 0%, #f0db26 45%, #e6cc13 100%);
-  color: #1f1f1f;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 45%, #cbd5e1 100%);
+  color: #0f172a;
   position: relative;
   overflow: hidden;
-  box-shadow: inset 0 4px 16px rgba(0, 0, 0, 0.08), inset 0 -4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 4px 16px rgba(0, 0, 0, 0.05), inset 0 -4px 16px rgba(0, 0, 0, 0.05);
 }
 
 .downloads::before {
@@ -688,28 +641,29 @@ body[data-project="renalith"] .download-note {
   inset: 0;
   background-image:
     repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.02) 0, rgba(0, 0, 0, 0.02) 1px, transparent 0, transparent 10px),
-    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.35) 0%, transparent 40%);
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.7) 0%, transparent 40%);
   pointer-events: none;
 }
 
 .downloads .article-title {
-  color: #1f1f1f;
+  color: #0f172a;
 }
 
 .downloads .article-title::before {
-  background: #1f1f1f;
+  background: #334155;
 }
 
 .downloads > .container > p {
   font-size: 14px;
-  color: #383838;
+  color: #334155;
+  font-weight: 500;
 }
 
 .download-project-name {
   font-weight: 700;
   font-size: 16px;
   margin-bottom: 18px;
-  color: #1a1a1a;
+  color: #0f172a;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -733,9 +687,9 @@ body[data-project="renalith"] .download-note {
   align-items: center;
   justify-content: center;
   min-height: 56px;
-  background: linear-gradient(180deg, #35363b 0%, #202125 100%);
-  border: 1px solid #4a4d58;
-  border-bottom: 3px solid #121316;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid #334155;
+  border-bottom: 3px solid #020617;
   border-radius: 5px;
   padding: 14px 22px;
   text-align: center;
@@ -744,16 +698,16 @@ body[data-project="renalith"] .download-note {
   font-weight: 600;
   letter-spacing: 0.03em;
   overflow-wrap: anywhere;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.25);
   transition: var(--transition);
 }
 
 .download-button:hover {
-  background: linear-gradient(180deg, #202125 0%, #111215 100%);
-  border-color: #ffffff;
-  color: #f0db26;
+  background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+  border-color: #cbd5e1;
+  color: #93c5fd;
   text-decoration: none;
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 22px rgba(15, 23, 42, 0.4);
   transform: translateY(-2px);
 }
 
@@ -795,7 +749,7 @@ body[data-project="renalith"] .download-note {
   margin: 20px 0 0;
   font-size: 12px;
   max-width: 800px;
-  color: #444;
+  color: #475569;
 }
 
 
