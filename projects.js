@@ -20,7 +20,7 @@ window.HAKO_PROJECTS = [
     "banner": "img/vestaria-banner.jpg",
     "bannerAlt": "Ảnh chụp gameplay Vestaria Saga I+",
     "gridImage": "img/vestaria-grid.jpg",
-    "logoImage": "img/vestaria-logo.png",
+
     "artworkSource": "https://automaton-media.com/articles/newsjp/20240425-291095/",
     "artworkCredit": "AUTOMATON · Vestaria Saga I+",
     "title": "Vestaria Saga I+",
@@ -168,7 +168,7 @@ window.HAKO_PROJECTS = [
     "banner": "img/rance-banner.jpg",
     "bannerAlt": "Bìa gốc Kichikuou Rance của AliceSoft",
     "gridImage": "img/rance-grid.jpg",
-    "logoImage": "img/rance-logo.png",
+
     "artworkSource": "https://stash.games/games/kichikuou-rance",
     "artworkCredit": "IGDB / Stash · Kichikuou Rance",
     "title": "Kichikuou Rance",
@@ -219,7 +219,7 @@ window.HAKO_PROJECTS = [
     "banner": "img/renalith-banner.jpg",
     "bannerAlt": "Ảnh sản phẩm Renalith Saga của CHERIS SOFT",
     "gridImage": "img/renalith-grid.jpg",
-    "logoImage": "img/renalith-logo.svg",
+
     "artworkSource": "https://www.dlsite.com/maniax/work/=/product_id/RJ235129.html",
     "artworkCredit": "DLsite · Renalith Saga",
     "title": "Renalith Saga",
@@ -270,8 +270,8 @@ window.HAKO_PROJECTS = [
     "sourceUrl": "https://www.facebook.com/groups/858372374288786/?multi_permalinks=28641529282213055",
     "downloads": [
       {
-        "label": "Tải bản vá (Facebook)",
-        "url": "https://www.facebook.com/groups/858372374288786/?multi_permalinks=28641529282213055"
+        "label": "Tải Vestaria Saga II Việt hóa (Facebook)",
+        "url": "https://www.facebook.com/groups/858372374288786/posts/28641529282213055/"
       }
     ]
   },
@@ -296,11 +296,11 @@ window.HAKO_PROJECTS = [
     "version": "1.0",
     "releaseNotes": "Bản dịch Việt hóa Blades of Jianghu.",
     "sourceLabel": "Facebook · Bài viết cộng đồng",
-    "sourceUrl": "https://www.facebook.com/groups/2390405871734944/?multi_permalinks=2409937889781742",
+    "sourceUrl": "https://www.facebook.com/groups/2390405871734944/permalink/2409937889781742/",
     "downloads": [
       {
-        "label": "Tải bản vá (Facebook)",
-        "url": "https://www.facebook.com/groups/2390405871734944/?multi_permalinks=2409937889781742"
+        "label": "Tải bản vá v1.0.1 (Google Drive)",
+        "url": "https://drive.google.com/file/d/1JkwBYY41kRtrURvVnubxEG9qevzlKFug/view?usp=sharing"
       }
     ]
   },
@@ -328,8 +328,41 @@ window.HAKO_PROJECTS = [
     "sourceUrl": "https://www.alicesoft.com/rance10/",
     "downloads": [
       {
-        "label": "Tải bản vá",
-        "url": ""
+        "label": "Tải Rance X Việt hóa (Google Drive)",
+        "url": "https://drive.google.com/file/d/1QN2yn5ItCSdI-kIQJ6_6sZVA7Pr1gExg/view?usp=drive_link"
+      },
+      {
+        "label": "Tải Font tiếng Việt (Google Drive)",
+        "url": "https://drive.google.com/file/d/1yhPZvKIBcI3l-oiRDZlwQZsKoKd0nHNW/view?usp=sharing"
+      }
+    ]
+  },
+  {
+    "id": "gloria",
+    "screenshots": [],
+    "page": "gloria-union.html",
+    "banner": "img/gloria-banner.jpg",
+    "bannerAlt": "Ảnh sản phẩm Gloria Union: Twin Fates in Blue Ocean",
+    "gridImage": "img/gloria-grid.jpg",
+    "artworkSource": "https://www.sting.co.jp/gloria/",
+    "artworkCredit": "Sting · Gloria Union FHD Edition",
+    "title": "Gloria Union",
+    "japanese": "グロリア・ユニオン",
+    "category": "TACTICAL RPG",
+    "symbol": "⚓",
+    "theme": "ocean",
+    "developer": "Sting Entertainment",
+    "age": "",
+    "description": "Gloria Union: Twin Fates in Blue Ocean — Phiêu lưu chiến thuật theo lượt trên biển cả cùng thủy thủ đoàn trẻ tuổi. Phần tiếp nối tinh thần của Yggdra Union với hệ thống Union đặc trưng và đồ họa FHD.",
+    "note": "Bản Việt hóa dành cho phiên bản PSP hoặc FHD Edition (Switch/Mobile). Kiểm tra đúng phiên bản trước khi cài đặt.",
+    "version": "1.0",
+    "releaseNotes": "Gloria Union Việt hóa — phiên bản 1.0, dịch bởi cộng đồng Fire Emblem Việt Nam.",
+    "sourceLabel": "Facebook · Fire Emblem Việt Nam",
+    "sourceUrl": "https://www.facebook.com/groups/858372374288786/posts/28698220599877256/",
+    "downloads": [
+      {
+        "label": "Tải Gloria Union Việt hóa (Google Drive)",
+        "url": "https://drive.google.com/file/d/1We6AiQna051Vwtr5QuTYOQE0ow-MlyuX/view?usp=sharing"
       }
     ]
   }

@@ -46,19 +46,6 @@
         banner.append(gridImg);
       }
 
-      // SteamGridDB Logo overlay (for Grid Logo view)
-      const logoImage = safeImage(project.logoImage);
-      if (logoImage) {
-        const logoWrap = el('div', 'grid-logo-wrapper');
-        const logoImg = el('img', 'grid-logo-image');
-        logoImg.src = logoImage;
-        logoImg.alt = project.title + ' Logo';
-        logoImg.loading = 'lazy';
-        logoImg.decoding = 'async';
-        logoWrap.append(logoImg);
-        banner.append(logoWrap);
-      }
-
       const content = el('div', 'banner-content');
       content.append(el('span', 'banner-category', project.category), el('h2', '', project.title), el('span', 'banner-japanese', project.japanese));
       if (project.age) content.append(el('span', 'banner-age', project.age));
