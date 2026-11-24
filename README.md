@@ -1,4 +1,4 @@
-# Hako — static project site
+# Haniho — static project site
 
 The homepage contains only three linked product banners. Each project has its own page, following the supplied theme: charcoal navigation, yellow accents and download section, white content, and a gray information sidebar.
 

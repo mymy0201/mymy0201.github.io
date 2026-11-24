@@ -85,8 +85,76 @@
     const article = el('article', 'project'); article.id = project.id;
     const layout = el('div', 'project-layout');
     const body = el('div', 'project-summary');
-    body.append(el('h4', '', 'Tóm tắt'), el('p', 'description', project.description), el('h4', '', 'Lưu ý'), el('p', '', project.note));
-    const download = el('a', 'text-link', 'Đến phần tải xuống ↓'); download.href = `#download-${project.id}`; body.append(download);
+
+    /* Tabs navigation: Giới thiệu & Thông tin bản Việt hóa */
+    const tabNav = el('div', 'project-tabs-nav');
+    const btnTabDesc = el('button', 'project-tab-btn active', 'Giới thiệu');
+    btnTabDesc.type = 'button';
+    btnTabDesc.setAttribute('aria-selected', 'true');
+
+    const btnTabVi = el('button', 'project-tab-btn', 'Thông tin bản Việt hóa');
+    btnTabVi.type = 'button';
+    btnTabVi.setAttribute('aria-selected', 'false');
+
+    tabNav.append(btnTabDesc, btnTabVi);
+
+    const paneDesc = el('div', 'project-tab-pane tab-pane-desc active');
+    paneDesc.append(el('h4', '', 'Tóm tắt'), el('p', 'description', project.description), el('h4', '', 'Lưu ý'), el('p', '', project.note));
+    const download = el('a', 'text-link', 'Đến phần tải xuống ↓'); download.href = `#download-${project.id}`; paneDesc.append(download);
+
+    /* Tab: Thông tin bản Việt hóa */
+    const paneVi = el('div', 'project-tab-pane tab-pane-vi');
+    const viTableWrapper = el('div', 'vi-table-wrapper');
+    const viTable = el('table', 'vi-info-table');
+    const viTbody = el('tbody');
+
+    const viInfoList = [
+      ['Tựa game', `${project.title} (${project.japanese})`],
+      ['Nhà phát triển', project.developer],
+      ['Thể loại', project.category],
+      ['Độ tuổi', project.age || 'Mọi lứa tuổi'],
+      ['Phiên bản Việt hóa', project.version || 'Đang cập nhật'],
+      ['Trạng thái phát hành', project.releaseNotes || 'Xem chi tiết bên dưới'],
+      ['Nền tảng kiểm định', 'Windows (PC)'],
+      ['Ngôn ngữ', 'Tiếng Việt đầy đủ, font chữ hiển thị chuẩn trong game'],
+      ['Hình thức cài đặt', 'Bản vá (patch) chép đè hoặc giải nén chơi ngay'],
+      ['Mức phí', 'Miễn phí hoàn toàn (Free / Non-commercial)'],
+      ['Nguồn phát hành', project.sourceLabel || 'Haniho Translation']
+    ];
+
+    viInfoList.forEach(([lbl, val]) => {
+      const tr = el('tr');
+      const th = el('th', '', lbl);
+      th.scope = 'row';
+      const td = el('td', '', val);
+      tr.append(th, td);
+      viTbody.append(tr);
+    });
+    viTable.append(viTbody);
+    viTableWrapper.append(viTable);
+    paneVi.append(viTableWrapper);
+
+    /* Tab switcher event */
+    btnTabDesc.addEventListener('click', () => {
+      btnTabDesc.classList.add('active');
+      btnTabDesc.setAttribute('aria-selected', 'true');
+      btnTabVi.classList.remove('active');
+      btnTabVi.setAttribute('aria-selected', 'false');
+      paneDesc.classList.add('active');
+      paneVi.classList.remove('active');
+    });
+
+    btnTabVi.addEventListener('click', () => {
+      btnTabVi.classList.add('active');
+      btnTabVi.setAttribute('aria-selected', 'true');
+      btnTabDesc.classList.remove('active');
+      btnTabDesc.setAttribute('aria-selected', 'false');
+      paneVi.classList.add('active');
+      paneDesc.classList.remove('active');
+    });
+
+    body.append(tabNav, paneDesc, paneVi);
+
     const sidebar = el('aside', 'side-bar');
     const panel = el('div', 'data-content'); panel.append(el('h4', 'data-title', 'Thông tin'));
     const meta = el('dl', 'metadata');
