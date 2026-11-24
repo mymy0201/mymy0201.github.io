@@ -245,5 +245,92 @@ window.HAKO_PROJECTS = [
         "url": "https://github.com/mymy0201/Renalith-Saga-Vietnamese#h%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-c%C3%A0i-%C4%91%E1%BA%B7t"
       }
     ]
+  },
+  {
+    "id": "vestaria2",
+    "screenshots": [],
+    "page": "vestaria-saga-ii-remake.html",
+    "banner": "img/vestaria2-banner.jpg",
+    "bannerAlt": "Ảnh sản phẩm Vestaria Saga II Remake",
+    "gridImage": "img/vestaria2-grid.jpg",
+    "artworkSource": "https://store.steampowered.com/app/1811600/Vestaria_Saga_II_The_Sacred_Sword_of_Silvanister/",
+    "artworkCredit": "Steam · Vestaria Saga II",
+    "title": "Vestaria Saga II Remake",
+    "japanese": "ヴェスタリアサーガII",
+    "category": "TACTICAL RPG",
+    "symbol": "⚔",
+    "theme": "sage",
+    "developer": "Vestaria Project",
+    "age": "",
+    "description": "Phần tiếp theo và là hồi kết cho câu chuyện của Zade trong thế giới Vestaria. Lối chơi chiến thuật theo lượt chuyên sâu với các thử thách địa hình và cốt truyện hào hùng.",
+    "note": "Kiểm tra đúng phiên bản game trước khi áp dụng bản vá.",
+    "version": "1.0",
+    "releaseNotes": "Vestaria Saga II Remake Việt hóa — cập nhật từ cộng đồng.",
+    "sourceLabel": "Facebook · Bài viết cộng đồng",
+    "sourceUrl": "https://www.facebook.com/groups/858372374288786/?multi_permalinks=28641529282213055",
+    "downloads": [
+      {
+        "label": "Tải bản vá (Facebook)",
+        "url": "https://www.facebook.com/groups/858372374288786/?multi_permalinks=28641529282213055"
+      }
+    ]
+  },
+  {
+    "id": "jianghu",
+    "screenshots": [],
+    "page": "blades-of-jianghu.html",
+    "banner": "img/jianghu-banner.jpg",
+    "bannerAlt": "Ảnh sản phẩm Blades of Jianghu",
+    "gridImage": "img/jianghu-grid.jpg",
+    "artworkSource": "https://store.steampowered.com/app/2179300/Blades_of_Jianghu_Ballad_of_Wind_and_Dust/",
+    "artworkCredit": "Steam · Blades of Jianghu",
+    "title": "Blades of Jianghu",
+    "japanese": "劍俠．風塵戀曲",
+    "category": "WUXIA RPG",
+    "symbol": "🗡",
+    "theme": "rose",
+    "developer": "Eternal Alice Studio",
+    "age": "18+",
+    "description": "Blades of Jianghu: Ballad of Wind and Dust — Game nhập vai kiếm hiệp kết hợp xây dựng mối quan hệ và những trận chiến giang hồ đầy phong trần.",
+    "note": "Trò chơi có nội dung người lớn. Dành cho người chơi từ 18 tuổi trở lên.",
+    "version": "1.0",
+    "releaseNotes": "Bản dịch Việt hóa Blades of Jianghu.",
+    "sourceLabel": "Facebook · Bài viết cộng đồng",
+    "sourceUrl": "https://www.facebook.com/groups/2390405871734944/?multi_permalinks=2409937889781742",
+    "downloads": [
+      {
+        "label": "Tải bản vá (Facebook)",
+        "url": "https://www.facebook.com/groups/2390405871734944/?multi_permalinks=2409937889781742"
+      }
+    ]
+  },
+  {
+    "id": "rance-x",
+    "screenshots": [],
+    "page": "rance-x.html",
+    "banner": "img/rance-x-banner.jpg",
+    "bannerAlt": "Ảnh sản phẩm Rance X của AliceSoft",
+    "gridImage": "img/rance-x-grid.jpg",
+    "artworkSource": "https://www.alicesoft.com/rance10/",
+    "artworkCredit": "AliceSoft · Rance X",
+    "title": "Rance X",
+    "japanese": "ランス10 -決戦-",
+    "category": "GREAT WAR RPG",
+    "symbol": "♛",
+    "theme": "rose",
+    "developer": "AliceSoft",
+    "age": "18+",
+    "description": "Đại kết cục của dòng game Rance huyền thoại sau gần 3 thập kỷ. Cuộc chiến tổng lực giữa nhân loại và Ma vương giới với quy mô hoành tráng chưa từng có.",
+    "note": "Trò chơi có nội dung người lớn. Dành cho người chơi từ 18 tuổi trở lên.",
+    "version": "Sắp ra mắt",
+    "releaseNotes": "Dự án Việt hóa Rance X đang được chuẩn bị (coming soon). Thông tin bản vá sẽ được cập nhật sớm.",
+    "sourceLabel": "AliceSoft · Trang sản phẩm",
+    "sourceUrl": "https://www.alicesoft.com/rance10/",
+    "downloads": [
+      {
+        "label": "Tải bản vá",
+        "url": ""
+      }
+    ]
   }
 ];

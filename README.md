@@ -8,6 +8,9 @@ The homepage contains only three linked product banners. Each project has its ow
 - vestaria-saga-i-plus.html — Vestaria Saga I+ detail page
 - kichikuou-rance.html — Kichikuou Rance detail page
 - renalith-saga.html — Renalith Saga detail page
+- vestaria-saga-ii-remake.html — Vestaria Saga II Remake detail page
+- blades-of-jianghu.html — Blades of Jianghu detail page
+- rance-x.html — Rance X detail page
 - projects.js — shared project descriptions, links, versions, banner paths and credits
 - style.css — responsive styles (600px and 850px breakpoints)
 - app.js — gallery and project rendering
@@ -39,6 +42,9 @@ All three images are real product artwork or a game screenshot, downloaded on 26
 | img/vestaria-banner.jpg | Vestaria Saga I+ gameplay screenshot, specifically from I+ coverage | https://automaton-media.com/articles/newsjp/20240425-291095/ | https://automaton-media.com/wp-content/uploads/2024/04/20240425-291095-header.jpg |
 | img/rance-banner.jpg | Kichikuou Rance original cover art | https://stash.games/games/kichikuou-rance | https://images.igdb.com/igdb/image/upload/t_1080p_2x/co3u55.jpg |
 | img/renalith-banner.jpg | Renalith Saga official storefront product image | https://www.dlsite.com/maniax/work/=/product_id/RJ235129.html | https://img.dlsite.jp/modpub/images2/work/doujin/RJ236000/RJ235129_img_main.jpg |
+| img/vestaria2-banner.jpg | Vestaria Saga II Steam store banner | https://store.steampowered.com/app/1811600/Vestaria_Saga_II_The_Sacred_Sword_of_Silvanister/ | https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1811600/header.jpg |
+| img/jianghu-banner.jpg | Blades of Jianghu Steam store banner | https://store.steampowered.com/app/2179300/Blades_of_Jianghu_Ballad_of_Wind_and_Dust/ | https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2179300/header.jpg |
+| img/rance-x-banner.jpg | Rance X official website key visual | https://www.alicesoft.com/rance10/ | https://www.alicesoft.com/rance10/ogp.png |
 
 The DLsite asset URL was extracted from the actual product-page HTML. All downloaded images were visually inspected. Artwork remains the property of the respective owners; attribution is included in each project page footer. The image filenames and artwork credit fields are also available in projects.js for maintenance. Changing a project header image requires updating its HTML image tag as well.
 
